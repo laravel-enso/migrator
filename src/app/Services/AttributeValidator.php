@@ -9,8 +9,7 @@ class AttributeValidator
     public static function passes(array $required, array $attributes)
     {
         $valid = count($required) === count($attributes)
-            && collect($attributes)
-                ->keys()
+            && collect($attributes)->keys()
                 ->diff(collect($required)->values())
                 ->isEmpty();
 

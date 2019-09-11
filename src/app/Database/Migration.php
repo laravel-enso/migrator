@@ -18,8 +18,7 @@ abstract class Migration extends BaseMigration
     public function up()
     {
         DB::transaction(function () {
-            (new PermissionCreator($this->permissions))
-                ->handle();
+            (new PermissionCreator($this->permissions))->handle();
 
             (new MenuCreator($this->menu))
                 ->parent($this->parentMenu)
