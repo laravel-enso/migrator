@@ -12,18 +12,7 @@ This package works exclusively within the [Enso](https://github.com/laravel-enso
 
 For live examples and demos, you may visit [laravel-enso.com](https://www.laravel-enso.com)
 
-## Installation
-
-Comes pre-installed in Enso.
-
-## Features
-
-- can be used to easily insert (default) data, during the install of a package, or later when new routes and permissions are required and can create menus, assign default permissions, etc.
-- extends Illuminate's `Migration` class and acts like a migration
-- can also rollback its own changes
-- when adding menus and permissions, automatic access for the configured default role is added
-    
-### Configuration & Usage
+### Installation, Configuration & Usage
 
 Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/migrator.html)
 
