@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\Migrator\app\Services\Creators;
 
-use LaravelEnso\Roles\app\Models\Role;
-use LaravelEnso\Permissions\app\Models\Permission;
 use LaravelEnso\Migrator\app\Services\AttributeValidator;
+use LaravelEnso\Permissions\app\Models\Permission;
+use LaravelEnso\Roles\app\Models\Role;
 
 class PermissionCreator
 {

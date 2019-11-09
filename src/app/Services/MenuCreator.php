@@ -3,9 +3,9 @@
 namespace LaravelEnso\Migrator\app\Services\Creators;
 
 use LaravelEnso\Menus\app\Models\Menu;
-use LaravelEnso\Permissions\app\Models\Permission;
 use LaravelEnso\Migrator\app\Services\AttributeValidator;
 use LaravelEnso\Migrator\app\Services\ParentMenuResolver;
+use LaravelEnso\Permissions\app\Models\Permission;
 
 class MenuCreator
 {

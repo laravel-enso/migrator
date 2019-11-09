@@ -2,12 +2,12 @@
 
 namespace LaravelEnso\Migrator\app\Database;
 
+use Illuminate\Database\Migrations\Migration as BaseMigration;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Menus\app\Models\Menu;
-use LaravelEnso\Permissions\app\Models\Permission;
 use LaravelEnso\Migrator\app\Services\Creators\MenuCreator;
-use Illuminate\Database\Migrations\Migration as BaseMigration;
 use LaravelEnso\Migrator\app\Services\Creators\PermissionCreator;
+use LaravelEnso\Permissions\app\Models\Permission;
 
 abstract class Migration extends BaseMigration
 {
