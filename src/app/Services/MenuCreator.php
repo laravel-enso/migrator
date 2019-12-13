@@ -22,7 +22,7 @@ class MenuCreator
     public function handle()
     {
         if ($this->isValid()) {
-            $this->setPermission()
+            $this->permission()
                 ->create();
         }
     }
@@ -36,7 +36,7 @@ class MenuCreator
         return $this;
     }
 
-    private function setPermission()
+    private function permission()
     {
         $this->menu['permission_id'] = optional(
             Permission::whereName($this->menu['route'])

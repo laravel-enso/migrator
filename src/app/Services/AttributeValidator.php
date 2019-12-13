@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Migrator\app\Services;
 
-use LaravelEnso\Migrator\app\Exceptions\EnsoStructureException;
+use LaravelEnso\Migrator\app\Exceptions\EnsoStructure;
 
 class AttributeValidator
 {
@@ -14,9 +14,7 @@ class AttributeValidator
                 ->isEmpty();
 
         if (! $valid) {
-            throw new EnsoStructureException(__(
-                'The current structure element is wrongly defined. Check the exception trace below'
-            ));
+            throw EnsoStructure::invalid();
         }
 
         return $valid;
