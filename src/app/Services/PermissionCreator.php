@@ -22,8 +22,8 @@ class PermissionCreator
     public function handle()
     {
         if ($this->isValid()) {
-            $this->setRoleIds()
-                ->setDefaultRoleId()
+            $this->roleIds()
+                ->defaultRoleId()
                 ->create();
         }
     }
@@ -45,14 +45,14 @@ class PermissionCreator
             : $this->defaultRoleId;
     }
 
-    private function setRoleIds()
+    private function roleIds()
     {
         $this->roleIds = Role::pluck('id');
 
         return $this;
     }
 
-    private function setDefaultRoleId()
+    private function defaultRoleId()
     {
         $this->defaultRoleId = optional(
             Role::whereName(

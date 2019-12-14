@@ -3,16 +3,14 @@
 namespace LaravelEnso\Migrator\app\Services;
 
 use LaravelEnso\Menus\app\Models\Menu;
-use LaravelEnso\Migrator\app\Exceptions\ParentMenuException;
+use LaravelEnso\Migrator\app\Exceptions\ParentMenu;
 
 class ParentMenuResolver
 {
-    private $menu;
     private $segments;
 
     public function __construct(string $menu)
     {
-        $this->menu = $menu;
         $this->segments = collect(explode('.', $menu));
     }
 
@@ -24,9 +22,7 @@ class ParentMenuResolver
             });
 
         if (! $resolved) {
-            throw new ParentMenuException(
-                __('The provided parent menu does not appear to be correct')
-            );
+            throw ParentMenu::invalid();
         }
 
         return $resolved;
