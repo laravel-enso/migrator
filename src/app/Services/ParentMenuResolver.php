@@ -31,11 +31,11 @@ class ParentMenuResolver
     private function indentify($menu)
     {
         return $this->segments->reverse()
-                ->reduce(function ($match, $segment) {
-                    return $match !== null && optional($match->parent)->name === $segment
-                        ? $match->parent
-                        : null;
-                }, $menu) !== null;
+            ->reduce(function ($match, $segment) {
+                return $match !== null && optional($match->parent)->name === $segment
+                    ? $match->parent
+                    : null;
+            }, $menu) !== null;
     }
 
     private function matchingMenus()
