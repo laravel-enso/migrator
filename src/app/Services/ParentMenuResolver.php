@@ -17,9 +17,7 @@ class ParentMenuResolver
     public function handle()
     {
         $resolved = $this->matchingMenus()
-            ->first(function ($menu) {
-                return $this->indentify($menu);
-            });
+            ->first(fn($menu) => $this->indentify($menu));
 
         if (! $resolved) {
             throw ParentMenu::invalid();
@@ -31,11 +29,11 @@ class ParentMenuResolver
     private function indentify($menu)
     {
         return $this->segments->reverse()
-            ->reduce(function ($match, $segment) {
-                return $match !== null && optional($match->parent)->name === $segment
+            ->reduce(fn($match, $segment) => (
+                $match !== null && optional($match->parent)->name === $segment
                     ? $match->parent
-                    : null;
-            }, $menu) !== null;
+                    : null
+            ), $menu) !== null;
     }
 
     private function matchingMenus()

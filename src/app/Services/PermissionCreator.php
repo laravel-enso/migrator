@@ -30,12 +30,11 @@ class PermissionCreator
 
     private function create()
     {
-        collect($this->permissions)
-            ->each(function ($permission) {
-                Permission::create($permission)
-                    ->roles()
-                    ->attach($this->roles($permission));
-            });
+        collect($this->permissions)->each(fn($permission) => (
+            Permission::create($permission)
+                ->roles()
+                ->attach($this->roles($permission))
+        ));
     }
 
     private function roles($permission)
@@ -66,9 +65,8 @@ class PermissionCreator
     private function isValid()
     {
         return $this->permissions !== null
-            && collect($this->permissions)
-                ->filter(function ($permission) {
-                    return ! AttributeValidator::passes(self::Attributes, $permission);
-                })->isEmpty();
+            && collect($this->permissions)->reject(fn($permission) => (
+                AttributeValidator::passes(self::Attributes, $permission)
+            ))->isEmpty();
     }
 }
