@@ -1,28 +1,26 @@
 <?php
 
-namespace LaravelEnso\Migrator\app\Database;
+namespace LaravelEnso\Migrator\App\Database;
 
+use Illuminate\Database\Migrations\Migration as LaravelMigration;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Menus\app\Models\Menu;
-use LaravelEnso\Permissions\app\Models\Permission;
-use LaravelEnso\Migrator\app\Services\Creators\MenuCreator;
-use Illuminate\Database\Migrations\Migration as BaseMigration;
-use LaravelEnso\Migrator\app\Services\Creators\PermissionCreator;
+use LaravelEnso\Menus\App\Models\Menu;
+use LaravelEnso\Migrator\App\Services\Menus;
+use LaravelEnso\Migrator\App\Services\Permissions;
+use LaravelEnso\Permissions\App\Models\Permission;
 
-abstract class Migration extends BaseMigration
+abstract class Migration extends LaravelMigration
 {
-    protected $parentMenu;
-    protected $menu;
     protected $permissions;
+    protected $menu;
+    protected $parentMenu;
 
     public function up()
     {
         DB::transaction(function () {
-            (new PermissionCreator($this->permissions))->handle();
-
-            (new MenuCreator($this->menu))
-                ->parent($this->parentMenu)
-                ->handle();
+            (new Permissions($this->permissions))->handle();
+            (new Menus($this->menu, $this->parentMenu))->handle();
         });
     }
 
@@ -30,13 +28,13 @@ abstract class Migration extends BaseMigration
     {
         DB::transaction(function () {
             if (isset($this->menu['name'])) {
-                Menu::whereName($this->menu)
-                    ->delete();
+                Menu::whereName($this->menu)->delete();
             }
 
-            Permission::whereIn(
-                'name', collect($this->permissions)->pluck('name')
-            )->delete();
+            if (is_array($this->permissions)) {
+                $permissions = (new Collection($this->permissions))->pluck('name');
+                Permission::whereIn('name', $permissions)->delete();
+            }
         });
     }
 }
