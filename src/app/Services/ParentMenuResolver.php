@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Migrator\app\Services;
+namespace LaravelEnso\Migrator\App\Services;
 
-use LaravelEnso\Menus\app\Models\Menu;
-use LaravelEnso\Migrator\app\Exceptions\ParentMenu;
+use LaravelEnso\Menus\App\Models\Menu;
+use LaravelEnso\Migrator\App\Exceptions\ParentMenu;
 
 class ParentMenuResolver
 {

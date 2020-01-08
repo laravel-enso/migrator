@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\Migrator\app\Services;
+namespace LaravelEnso\Migrator\App\Services;
 
-use LaravelEnso\Migrator\app\Exceptions\EnsoStructure;
+use LaravelEnso\Migrator\App\Exceptions\EnsoStructure;
 
 class AttributeValidator
 {

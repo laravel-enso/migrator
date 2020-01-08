@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Migrator\app\Exceptions;
+namespace LaravelEnso\Migrator\App\Exceptions;
 
 use InvalidArgumentException;
 
