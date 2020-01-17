@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Menus\App\Models\Menu;
 use LaravelEnso\Migrator\App\Services\Menus;
+use LaravelEnso\Migrator\App\Services\ParentMenu;
 use LaravelEnso\Migrator\App\Services\Permissions;
 use LaravelEnso\Permissions\App\Models\Permission;
 
@@ -28,7 +29,13 @@ abstract class Migration extends LaravelMigration
     {
         DB::transaction(function () {
             if (isset($this->menu['name'])) {
-                Menu::whereName($this->menu)->delete();
+                $menu = Menu::whereName($this->menu['name'])
+                    ->when($this->parentMenu !== '', fn ($query) => $query
+                        ->whereParentId((new ParentMenu($this->parentMenu))->id()))
+                    ->first();
+
+                $menu->rolesWhereIsDefault()->update(['menu_id' => null]);
+                $menu->delete();
             }
 
             if (is_array($this->permissions)) {
