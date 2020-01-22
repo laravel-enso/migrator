@@ -34,7 +34,8 @@ class Permissions
     public function down()
     {
         if ($this->permissions->isNotEmpty()) {
-            $this->destroy();
+            $this->validate()
+                ->destroy();
         }
     }
 
