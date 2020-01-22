@@ -9,6 +9,8 @@ use LaravelEnso\Menus\App\Models\Menu;
 use LaravelEnso\Migrator\App\Services\Menus;
 use LaravelEnso\Migrator\App\Services\ParentMenu;
 use LaravelEnso\Migrator\App\Services\Permissions;
+use LaravelEnso\Migrator\App\Services\RemoveMenu;
+use LaravelEnso\Migrator\App\Services\RemovePermissions;
 use LaravelEnso\Permissions\App\Models\Permission;
 
 abstract class Migration extends LaravelMigration
@@ -20,38 +22,16 @@ abstract class Migration extends LaravelMigration
     public function up()
     {
         DB::transaction(function () {
-            (new Permissions($this->permissions))->handle();
-            (new Menus($this->menu, $this->parentMenu))->handle();
+            (new Permissions($this->permissions))->up();
+            (new Menus($this->menu, $this->parentMenu))->up();
         });
     }
 
     public function down()
     {
         DB::transaction(function () {
-            if (isset($this->menu['name'])) {
-                $this->removeMenu();
-            }
-
-            if (is_array($this->permissions)) {
-                $this->removePermissions();
-            }
+            (new Menus($this->menu, $this->parentMenu))->down();
+            (new Permissions($this->permissions))->down();
         });
-    }
-
-    private function removeMenu()
-    {
-        $menu = Menu::whereName($this->menu['name'])
-            ->when($this->parentMenu, fn ($query) => $query
-                ->whereParentId((new ParentMenu($this->parentMenu))->id()))
-            ->first();
-
-        $menu->rolesWhereIsDefault()->update(['menu_id' => null]);
-        $menu->delete();
-    }
-
-    private function removePermissions()
-    {
-        $permissions = (new Collection($this->permissions))->pluck('name');
-        Permission::whereIn('name', $permissions)->delete();
     }
 }

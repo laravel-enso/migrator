@@ -18,9 +18,9 @@ class Menus
         $this->parent = $parent;
     }
 
-    public function handle(): void
+    public function up(): void
     {
-        if ($this->menu === null) {
+        if (! $this->menu) {
             return;
         }
 
@@ -28,6 +28,16 @@ class Menus
             ->parent()
             ->permission()
             ->create();
+    }
+
+    public function down()
+    {
+        if (! $this->menu) {
+            return;
+        }
+
+        $this->validate()
+            ->destroy();
     }
 
     private function parent(): self
@@ -53,6 +63,17 @@ class Menus
     private function create(): void
     {
         Menu::create($this->menu);
+    }
+
+    private function destroy(): void
+    {
+        $menu = Menu::whereName($this->menu['name'])
+            ->when($this->parent, fn ($query) => $query
+                ->whereParentId((new ParentMenu($this->parent))->id()))
+            ->first();
+
+        $menu->rolesWhereIsDefault()->update(['menu_id' => null]);
+        $menu->delete();
     }
 
     private function validate(): self

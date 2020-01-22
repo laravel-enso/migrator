@@ -19,7 +19,7 @@ class Permissions
         $this->permissions = new Collection($permissions);
     }
 
-    public function handle()
+    public function up()
     {
         if ($this->permissions->isEmpty()) {
             return;
@@ -31,6 +31,13 @@ class Permissions
             ->permissions();
     }
 
+    public function down()
+    {
+        if ($this->permissions->isNotEmpty()) {
+            $this->destroy();
+        }
+    }
+
     private function permissions(): void
     {
         $this->permissions->each(fn ($permission) => $this->create($permission));
@@ -40,6 +47,11 @@ class Permissions
     {
         Permission::create($permission)
             ->roles()->attach($this->roles($permission));
+    }
+
+    private function destroy(): void
+    {
+        Permission::whereIn('name', $this->permissions->pluck('name'))->delete();
     }
 
     private function roles($permission)
