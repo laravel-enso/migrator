@@ -3,15 +3,9 @@
 namespace LaravelEnso\Migrator\App\Database;
 
 use Illuminate\Database\Migrations\Migration as LaravelMigration;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Menus\App\Models\Menu;
 use LaravelEnso\Migrator\App\Services\Menus;
-use LaravelEnso\Migrator\App\Services\ParentMenu;
 use LaravelEnso\Migrator\App\Services\Permissions;
-use LaravelEnso\Migrator\App\Services\RemoveMenu;
-use LaravelEnso\Migrator\App\Services\RemovePermissions;
-use LaravelEnso\Permissions\App\Models\Permission;
 
 abstract class Migration extends LaravelMigration
 {
