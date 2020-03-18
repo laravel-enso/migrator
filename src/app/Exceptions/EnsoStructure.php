@@ -17,7 +17,7 @@ class EnsoStructure extends InvalidArgumentException
     public static function missingAttributes(Collection $diff, string $element)
     {
         return new self(__(
-            'Mandatory attribute(s) ":attrs" missing from the current element ":element"',
+            'Mandatory attribute(s) ":attributes" missing from the current element ":element"',
             ['attributes' => $diff->implode(','), 'element' => $element]
         ));
     }
