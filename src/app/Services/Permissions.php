@@ -8,7 +8,7 @@ use LaravelEnso\Roles\App\Models\Role;
 
 class Permissions
 {
-    private const Attributes = ['name', 'description', 'type', 'is_default'];
+    private const Attributes = ['name', 'description', 'is_default'];
 
     private Collection $permissions;
     private Collection $roleIds;
@@ -80,8 +80,8 @@ class Permissions
 
     private function validate(): self
     {
-        $this->permissions->each(fn ($permission) => Validator::run(
-            self::Attributes, $permission, 'permissions')
+        $this->permissions->each(
+            fn ($permission) => Validator::run(self::Attributes, $permission, 'permissions')
         );
 
         return $this;
