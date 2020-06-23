@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Migrator\App\Services;
+namespace LaravelEnso\Migrator\Services;
 
 use Illuminate\Support\Collection;
-use LaravelEnso\Permissions\App\Models\Permission;
-use LaravelEnso\Roles\App\Models\Role;
+use LaravelEnso\Permissions\Models\Permission;
+use LaravelEnso\Roles\Models\Role;
 
 class Permissions
 {

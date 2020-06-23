@@ -1,17 +1,17 @@
 <?php
 
-namespace LaravelEnso\Migrator\App\Database;
+namespace LaravelEnso\Migrator\Database;
 
 use Illuminate\Database\Migrations\Migration as LaravelMigration;
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Migrator\App\Services\Menus;
-use LaravelEnso\Migrator\App\Services\Permissions;
+use LaravelEnso\Migrator\Services\Menus;
+use LaravelEnso\Migrator\Services\Permissions;
 
 abstract class Migration extends LaravelMigration
 {
-    protected $permissions;
-    protected $menu;
-    protected $parentMenu;
+    protected array $permissions;
+    protected array $menu;
+    protected string $parentMenu;
 
     public function up()
     {

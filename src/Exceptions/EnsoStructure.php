@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Migrator\App\Exceptions;
+namespace LaravelEnso\Migrator\Exceptions;
 
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
@@ -10,7 +10,8 @@ class EnsoStructure extends InvalidArgumentException
     public static function invalidElement(string $element)
     {
         return new self(__(
-            'Invalid structure element ":element"', ['element' => $element]
+            'Invalid structure element ":element"',
+            ['element' => $element]
         ));
     }
 
