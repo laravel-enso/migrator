@@ -9,9 +9,9 @@ use LaravelEnso\Migrator\Services\Permissions;
 
 abstract class Migration extends LaravelMigration
 {
-    protected array $permissions;
-    protected array $menu;
-    protected string $parentMenu;
+    protected array $permissions = [];
+    protected array $menu = [];
+    protected ?string $parentMenu = null;
 
     public function up()
     {
