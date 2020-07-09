@@ -1,6 +1,6 @@
 # Migrator
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/45eb41a083a1457cb03c5bc577942a70)](https://www.codacy.com/app/laravel-enso/migrator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/migrator&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/253c968b661846f089ddf3fdaf57974d)](https://www.codacy.com/gh/laravel-enso/migrator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/migrator&amp;utm_campaign=Badge_Grade) 
 [![StyleCI](https://github.styleci.io/repos/186614340/shield?branch=master)](https://github.styleci.io/repos/186614340)
 [![License](https://poser.pugx.org/laravel-enso/migrator/license)](https://packagist.org/packages/laravel-enso/migrator)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/migrator/downloads)](https://packagist.org/packages/laravel-enso/migrator)
