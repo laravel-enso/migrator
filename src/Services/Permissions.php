@@ -73,7 +73,7 @@ class Permissions
     {
         $role = Role::whereName(config('enso.config.defaultRole'))->first();
 
-        $this->defaultRoleId = optional($role)->id;
+        $this->defaultRoleId = $role?->id;
 
         return $this;
     }

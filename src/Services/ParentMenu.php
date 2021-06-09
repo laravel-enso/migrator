@@ -8,13 +8,11 @@ use LaravelEnso\Migrator\Exceptions\EnsoStructure;
 
 class ParentMenu
 {
-    private string $menu;
     private Collection $segments;
 
-    public function __construct(string $menu)
+    public function __construct(private string $menu)
     {
-        $this->menu = $menu;
-        $this->segments = (new Collection(explode('.', $menu)));
+        $this->segments = new Collection(explode('.', $menu));
     }
 
     public function id(): int
@@ -37,7 +35,7 @@ class ParentMenu
 
     private function advance($match, $segment)
     {
-        return $match && optional($match->parent)->name === $segment
+        return $match && $match->parent?->name === $segment
             ? $match->parent
             : false;
     }

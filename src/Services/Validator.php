@@ -13,8 +13,8 @@ class Validator
             throw EnsoStructure::invalidElement($element);
         }
 
-        $diff = (new Collection($required))
-            ->diff((new Collection($attributes))->keys());
+        $diff = Collection::wrap($required)
+            ->diff(Collection::wrap($attributes)->keys());
 
         if ($diff->isNotEmpty()) {
             throw EnsoStructure::missingAttributes($diff, $element);

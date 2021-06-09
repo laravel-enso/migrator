@@ -9,13 +9,10 @@ class Menus
 {
     private const Attributes = ['name', 'icon', 'route', 'order_index', 'has_children'];
 
-    private ?array $menu;
-    private ?string $parent;
-
-    public function __construct(?array $menu, ?string $parent)
-    {
-        $this->menu = $menu;
-        $this->parent = $parent;
+    public function __construct(
+        private ?array $menu,
+        private ?string $parent
+    ) {
     }
 
     public function up(): void
@@ -53,7 +50,7 @@ class Menus
     {
         $permission = Permission::whereName($this->menu['route'])->first();
 
-        $this->menu['permission_id'] = optional($permission)->id;
+        $this->menu['permission_id'] = $permission?->id;
 
         unset($this->menu['route']);
 
