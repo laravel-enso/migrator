@@ -24,17 +24,17 @@ class MigratorParentMenuTest extends TestCase
     public function resolves_a_dot_notated_parent_menu_chain(): void
     {
         $administration = Menu::create([
-            'name' => 'administration',
-            'icon' => 'fal users-cog',
-            'order_index' => 1,
+            'name'         => 'administration',
+            'icon'         => 'fal users-cog',
+            'order_index'  => 1,
             'has_children' => true,
         ]);
 
         $settings = Menu::create([
-            'parent_id' => $administration->id,
-            'name' => 'settings',
-            'icon' => 'fal cog',
-            'order_index' => 2,
+            'parent_id'    => $administration->id,
+            'name'         => 'settings',
+            'icon'         => 'fal cog',
+            'order_index'  => 2,
             'has_children' => true,
         ]);
 
@@ -48,9 +48,9 @@ class MigratorParentMenuTest extends TestCase
         $this->expectExceptionMessage('The provided parent menu "administration.settings" was not found');
 
         Menu::create([
-            'name' => 'settings',
-            'icon' => 'fal cog',
-            'order_index' => 1,
+            'name'         => 'settings',
+            'icon'         => 'fal cog',
+            'order_index'  => 1,
             'has_children' => true,
         ]);
 

@@ -23,20 +23,20 @@ class MigratorMigrationTest extends TestCase
     #[Test]
     public function orchestrates_permission_and_menu_creation_and_removal(): void
     {
-        $migration = new class extends Migration {
+        $migration = new class() extends Migration {
             protected array $permissions = [
                 [
-                    'name' => 'migrator.page',
+                    'name'        => 'migrator.page',
                     'description' => 'Migrator page',
-                    'is_default' => true,
+                    'is_default'  => true,
                 ],
             ];
 
             protected array $menu = [
-                'name' => 'Migrator Page',
-                'icon' => 'fal wrench',
-                'route' => 'migrator.page',
-                'order_index' => 100,
+                'name'         => 'Migrator Page',
+                'icon'         => 'fal wrench',
+                'route'        => 'migrator.page',
+                'order_index'  => 100,
                 'has_children' => false,
             ];
         };

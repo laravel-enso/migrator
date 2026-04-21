@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use LaravelEnso\Users\Models\User;
 use LaravelEnso\Migrator\Exceptions\EnsoStructure;
 use LaravelEnso\Migrator\Services\Validator;
+use LaravelEnso\Users\Models\User;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -23,7 +23,7 @@ class MigratorValidatorTest extends TestCase
     public function accepts_valid_attribute_payloads(): void
     {
         Validator::run(['name', 'description'], [
-            'name' => 'example.permission',
+            'name'        => 'example.permission',
             'description' => 'Example',
         ], 'permissions');
 

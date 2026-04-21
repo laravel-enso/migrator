@@ -25,14 +25,14 @@ class MigratorPermissionsTest extends TestCase
     {
         $service = new Permissions([
             [
-                'name' => 'migrator.default',
+                'name'        => 'migrator.default',
                 'description' => 'Default permission',
-                'is_default' => true,
+                'is_default'  => true,
             ],
             [
-                'name' => 'migrator.restricted',
+                'name'        => 'migrator.restricted',
                 'description' => 'Restricted permission',
-                'is_default' => false,
+                'is_default'  => false,
             ],
         ]);
 
@@ -58,9 +58,9 @@ class MigratorPermissionsTest extends TestCase
     {
         $service = new Permissions([
             [
-                'name' => 'migrator.to-delete',
+                'name'        => 'migrator.to-delete',
                 'description' => 'To delete',
-                'is_default' => false,
+                'is_default'  => false,
             ],
         ]);
 
