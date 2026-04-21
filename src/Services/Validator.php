@@ -9,7 +9,7 @@ class Validator
 {
     public static function run(array $required, $attributes, string $element)
     {
-        if (! is_array($attributes)) {
+        if (!is_array($attributes)) {
             throw EnsoStructure::invalidElement($element);
         }
 

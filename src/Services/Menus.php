@@ -17,7 +17,7 @@ class Menus
 
     public function up(): void
     {
-        if (! $this->menu) {
+        if (!$this->menu) {
             return;
         }
 
@@ -29,7 +29,7 @@ class Menus
 
     public function down()
     {
-        if (! $this->menu) {
+        if (!$this->menu) {
             return;
         }
 
