@@ -1,6 +1,6 @@
 {
     "name": "laravel-enso/migrator",
-    "description": "Structure Migrator dependency for Laravel Enso",
+    "description": "Structure-aware migration helpers for Laravel Enso packages",
     "keywords": [
         "laravel-enso",
         "structures",
